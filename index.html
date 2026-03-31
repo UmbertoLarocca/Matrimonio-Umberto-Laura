@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Umberto & Laura - 12 Settembre 2026</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
         /* --- RESET E STILE GENERALE --- */
@@ -13,37 +13,39 @@
         
         body { 
             font-family: 'Lora', serif; 
-            background-color: #fdf6f0; 
-            color: #5d4037; 
+            background-color: #f4f9f9; 
+            color: #455a64; 
             display: flex; 
             min-height: 100vh;
             overflow-x: hidden; 
         }
         
         h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 700; }
-        h2 { color: #8d6e63; font-size: 2.8rem; margin-bottom: 30px; text-align: center; }
+        h2 { color: #78909c; font-size: 2.8rem; margin-bottom: 30px; text-align: center; letter-spacing: 1px; }
+        h4 { font-family: 'Great Vibes', cursive; font-weight: 400; color: #90a4ae; font-size: 2.5rem; margin-bottom: 30px; text-align: center; }
 
-        /* --- SIDEBAR SCORREVOLE --- */
+        /* --- SIDEBAR --- */
         .sidebar { 
             width: 260px; 
             height: 100vh; 
-            background-color: #8d6e63; 
-            color: white; 
+            background-color: rgba(238, 245, 246, 0.7); 
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             position: fixed; 
-            top: 0;
-            left: 0;
+            top: 0; left: 0;
             display: flex; 
             flex-direction: column; 
             padding: 40px 20px; 
             z-index: 100; 
             overflow-y: auto; 
             transition: 0.5s;
+            border-right: 1px solid rgba(209, 219, 224, 0.5);
         }
 
-        .sidebar h2 { font-size: 1.8rem; margin-bottom: 30px; text-align: center; border-bottom: 1px solid #d4a373; padding-bottom: 15px; }
+        .sidebar h4 { font-size: 2.5rem; margin-bottom: 40px; text-align: center; border-bottom: 1px solid #cfd8dc; padding-bottom: 15px; } 
         
         .sidebar a { 
-            color: #fdf6f0; 
+            color: #78909c; 
             text-decoration: none; 
             margin: 10px 0; 
             padding: 12px; 
@@ -52,151 +54,150 @@
             font-size: 1.1rem; 
             font-weight: 600;
         }
-        .sidebar a:hover { background-color: #bc8a5f; transform: translateX(5px); }
+        .sidebar a:hover { background-color: #e0f2f1; color: #4db6ac; transform: translateX(5px); }
 
-        /* ICONA HAMBURGER PER MOBILE */
         .hamburger { 
             display: none; 
             position: fixed; 
-            top: 20px; 
-            right: 20px; 
+            top: 20px; right: 20px; 
             z-index: 1000; 
             cursor: pointer; 
-            background: #8d6e63; 
+            background: #ffffff; 
             padding: 10px; 
             border-radius: 8px; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
-        .hamburger div { width: 25px; height: 3px; background-color: white; margin: 5px 0; transition: 0.4s; }
+        .hamburger div { width: 25px; height: 2px; background-color: #78909c; margin: 6px 0; }
 
-        /* --- CONTENUTO PRINCIPALE --- */
-        .main-content { 
-            margin-left: 260px; 
-            width: calc(100% - 260px); 
-            display: block;
-        }
+        .main-content { margin-left: 0px; width: 100%; }
         
         section { 
             min-height: 100vh; 
-            padding: 100px 40px; 
+            padding: 100px 40px 100px 300px;
             display: flex; 
             flex-direction: column; 
             align-items: center; 
             justify-content: center; 
-            border-bottom: 1px solid #eee; 
+            border-bottom: 1px solid #eceff1; 
             position: relative; 
+            scroll-margin-top: -50px;
         }
 
-        /* SEZIONE HOME */
         #home { 
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
-                        url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80') no-repeat center center; 
+            background: linear-gradient(rgba(255,255,255,0.15), rgba(255,255,255,0.15)), 
+                url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80') no-repeat center center; 
             background-size: cover; 
-            color: white; 
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.4); 
-            text-align: center;
-            overflow: hidden; /* Importante per contenere i petali */
-        }
-        #home h1 { font-size: 4.5rem; margin-bottom: 10px; }
-        #countdown { 
-            font-size: 1.8rem; 
-            font-weight: bold; 
-            color: #a3c1ad; 
-            margin-top: 30px; 
-            background: rgba(255,255,255,0.15); 
-            padding: 15px 30px; 
-            border-radius: 50px; 
-        }
-
-        /* GRIGLIA LOCATION (3 COLONNE) */
-        .grid-location { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr 1fr; 
-            gap: 25px; 
-            width: 100%; 
-            max-width: 1200px; 
-            margin-top: 30px; 
-        }
-        
-        .card-info { 
-            background: white; 
-            padding: 30px; 
-            border-radius: 20px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
-            text-align: center; 
-            width: 100%; 
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-        }
-        
-        .card-icon {
-            width: 50px;
-            height: 50px;
-            margin: 0 auto 15px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-        
-        .card-info h3 { color: #8d6e63; font-size: 1.6rem; margin: 10px 0; }
-        iframe { width: 100%; height: 220px; border-radius: 12px; border: none; margin-top: 15px; }
-
-        /* BOTTONI GOLD */
-        .btn-gold { 
-            display: inline-block; 
-            padding: 16px 40px; 
-            background: #d4a373; 
+            align-items: center;
+            justify-content: center;
             color: white; 
-            text-decoration: none; 
-            border-radius: 50px; 
-            font-weight: bold; 
-            font-size: 1.1rem; 
-            transition: 0.3s; 
-            margin-top: 20px; 
-        }
-        .btn-gold:hover { background-color: #bc8a5f; transform: scale(1.05); }
-
-        /* PETALI */
-        .petal { 
-            position: absolute; 
-            background-size: contain; 
-            background-repeat: no-repeat; 
-            opacity: 0.9; 
-            pointer-events: none; 
-            z-index: 50; 
-            will-change: transform;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2); 
+            text-align: center;
+            overflow: hidden; 
         }
 
-        /* --- RESPONSIVE MOBILE --- */
-        @media (max-width: 1100px) {
-            .grid-location { grid-template-columns: 1fr; max-width: 600px; }
+        #home h1 { font-family: 'Great Vibes', cursive; font-size: 6rem; margin-bottom: 10px; font-weight: 400; }
+        #home p.date { font-size: 1.4rem; letter-spacing: 4px; margin-bottom: 35px; font-weight: 400; }
+
+        .countdown-container { display: flex; gap: 20px; justify-content: center; margin-top: 10px; }
+        .countdown-box { 
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 20px; border-radius: 15px; min-width: 100px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);      
+        }
+        .count-number { display: block; font-size: 2.5rem; font-weight: bold; font-family: 'Playfair Display', serif; }
+        .count-label { display: block; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; opacity: 0.8; }
+
+        .grid-location { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; width: 100%; max-width: 1200px; margin-top: 40px; }
+        .card-info { 
+            background: white; padding: 40px 30px; border-radius: 25px; 
+            box-shadow: 0 15px 45px rgba(144, 164, 174, 0.12); 
+            text-align: center; width: 100%; display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .card-icon { width: 45px; height: 45px; margin: 0 auto 20px; background-size: contain; background-repeat: no-repeat; background-position: center; }
+        .card-info h3 { color: #546e7a; font-size: 1.7rem; margin: 15px 0; }
+        iframe { width: 100%; height: 200px; border-radius: 15px; border: none; margin-top: 20px; }
+
+        /* --- NUOVI STILI LUNA DI MIELE --- */
+        .honey-wrapper { position: relative; width: 100%; max-width: 1000px; margin: 0 auto; }
+        .honey-map { width: 100%; display: block; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 10px solid white; }
+        
+        .map-point { 
+            position: absolute; width: 20px; height: 20px; 
+            transform: translate(-50%, -50%); cursor: pointer; z-index: 10;
+        }
+        
+        /* Effetto Radar */
+        .radar {
+            position: absolute; width: 100%; height: 100%;
+            border-radius: 50%; background: rgba(77, 182, 172, 0.4);
+            animation: pulse-radar 1.5s infinite; pointer-events: none;
+        }
+        @keyframes pulse-radar {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(2.5); opacity: 0; }
         }
 
+        .info-panel {
+            position: absolute; right: -40px; top: 50%; transform: translateY(-50%);
+            width: 280px; background: white; padding: 25px; border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); opacity: 0; visibility: hidden;
+            transition: 0.4s ease; z-index: 20; border-left: 5px solid #80cbc4;
+        }
+        .map-point:hover + .info-panel { opacity: 1; visibility: visible; right: 20px; }
+
+        /* Coordinate precise punti rossi 1HMhML5 */
+        .pt-maldive { top: 79.8%; left: 6.7%; }
+        .pt-kl { top: 78.0%; left: 63.2%; }
+        .pt-malacca { top: 80.2%; left: 64.5%; }
+        .pt-singapore1 { top: 82.0%; left: 66.4%; }
+        .pt-singapore2 { top: 82.5%; left: 67.5%; }
+
+        /* BOTTONI */
+        .btn-gold { 
+            display: inline-block; padding: 18px 45px; background: #80cbc4; color: white; 
+            text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 1rem; 
+            transition: 0.4s; margin-top: 25px; letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(128, 203, 196, 0.3);
+        }
+        .btn-gold:hover { background-color: #4db6ac; transform: scale(1.03); }
+
+        .petal { position: absolute; background-size: contain; background-repeat: no-repeat; opacity: 0.6; pointer-events: none; z-index: 50; will-change: transform; }
+
+        @media (max-width: 1100px) { 
+            .grid-location { grid-template-columns: 1fr; max-width: 550px; } 
+            .info-panel { position: fixed; bottom: 20px; left: 20px; right: 20px; top: auto; width: auto; transform: none; }
+            .map-point:hover + .info-panel { right: 20px; }
+        }
+        @media (max-width: 1000px) { section { padding: 100px 20px; } }
         @media (max-width: 768px) {
             .hamburger { display: block; }
-            .sidebar { left: -260px; width: 260px; }
+            .sidebar { left: -260px; }
             .sidebar.active { left: 0; }
             .main-content { margin-left: 0; width: 100%; }
-            section { padding: 60px 20px; }
-            #home h1 { font-size: 3rem; }
-            h2 { font-size: 2.2rem; }
+            #home h1 { font-size: 3.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <div class="hamburger" onclick="document.getElementById('sidebar').classList.toggle('active')">
         <div></div><div></div><div></div>
     </div>
 
     <nav class="sidebar" id="sidebar">
-        <h2>U & L</h2>
+        <h4>U&L</h4>
         <a href="#home">Home</a>
-        <a href="#location">Dove e Quando</a>
+        <a href="#location">Programma</a>
+        <a href="#viaggio">Luna di Miele</a>
         <a href="#lista">Lista Nozze</a>
-        <a href="#rsvp">Conferma la tua presenza</a>
-        <a href="#foto">Carica le tue Foto</a>
+        <a href="#rsvp">Conferma Presenza</a>
+        <a href="#foto">Galleria Condivisa</a>
         <a href="#contatti">Contatti</a>
     </nav>
 
@@ -204,50 +205,90 @@
         
         <section id="home">
             <h1>Umberto & Laura</h1>
-            <p>12 Settembre 2026</p>
-            <div id="countdown">Iniziamo il conto alla rovescia...</div>
+            <p class="date">12 Settembre 2026</p>
+            <div class="countdown-container">
+                <div class="countdown-box"><span class="count-number" id="days">00</span><span class="count-label">Giorni</span></div>
+                <div class="countdown-box"><span class="count-number" id="hours">00</span><span class="count-label">Ore</span></div>
+                <div class="countdown-box"><span class="count-number" id="mins">00</span><span class="count-label">Minuti</span></div>
+            </div>
         </section>
 
         <section id="location">
             <h2>Il Programma</h2>
             <div class="grid-location">
-                
                 <div class="card-info">
-                    <div class="card-icon" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23bc8a5f%22 stroke-width=%221.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9%22/><path d=%22M13.73 21a2 2 0 0 1-3.46 0%22/></svg>');"></div>
+                    <div class="card-icon" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%2380cbc4%22 stroke-width=%221.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9%22/><path d=%22M13.73 21a2 2 0 0 1-3.46 0%22/></svg>');"></div>
                     <h3>La Cerimonia</h3>
                     <p><strong>Ore 10:30</strong></p>
                     <p>Chiesa di Santa Maria della Speranza<br>Via Robert Mallet, Potenza</p>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3032.5312061958614!2d15.795115276587441!3d40.62923764205511!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133968d8555e579b%3A0xaddec909047e6421!2sParrocchia%20Santa%20Maria%20Della%20Speranza!5e0!3m2!1sit!2sit!4v1711394500000!5m2!1sit!2sit"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d818.1018515762088!2d15.836749425348374!3d40.63606332656024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1338e3d8555e579b%3A0x5dd9909047e6421!2sChiesa%20di%20Santa%20Maria%20della%20Speranza!5e1!3m2!1sit!2sit!4v1774946578799!5m2!1sit!2sit"></iframe>
                 </div>
 
-                <div class="card-info" style="border: 2px dashed #d4a373; background-color: #fffaf5;">
-                    <div class="card-icon" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23bc8a5f%22 stroke-width=%221.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><rect x=%223%22 y=%227%22 width=%2218%22 height=%2212%22 rx=%222%22/><path d=%22M7 19v2%22/><path d=%22M17 19v2%22/><path d=%22M3 13h18%22/></svg>');"></div>
+                <div class="card-info" style="border: 1px solid #b2dfdb; background-color: #faffff;">
+                    <div class="card-icon" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%2380cbc4%22 stroke-width=%221.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><rect x=%223%22 y=%227%22 width=%2218%22 height=%2212%22 rx=%222%22/><path d=%22M7 19v2%22/><path d=%22M17 19v2%22/><path d=%22M3 13h18%22/></svg>');"></div>
                     <h3>Servizio Navetta</h3>
-                    <p><strong>Andata:</strong> Al termine della funzione si partirà dal piazzale della chiesa</p>
-                    <p><strong>Ritorno:</strong> Ore 00:00 circa</p>
-                    <p style="font-style: italic; margin-top: 10px; font-size: 0.9rem;">Il bus accompagnerà gli ospiti da Potenza a Matera e ritorno.</p>
+                    <p>Potenza ⇄ Matera</p>
+                    <p>Andata: ore 12:00 (Chiesa)<br>Ritorno: ore 00:00 (Sala)</p>
                 </div>
                 
                 <div class="card-info">
-                    <div class="card-icon" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23bc8a5f%22 stroke-width=%221.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22M8 22h8%22/><path d=%22M12 11v11%22/><path d=%22M19 8a7 7 0 0 0-14 0c0 4 2 7 7 7s7-3 7-7z%22/></svg>');"></div>
+                    <div class="card-icon" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%2380cbc4%22 stroke-width=%221.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22M8 22h8%22/><path d=%22M12 11v11%22/><path d=%22M19 8a7 7 0 0 0-14 0c0 4 2 7 7 7s7-3 7-7z%22/></svg>');"></div>
                     <h3>Il Ricevimento</h3>
                     <p><strong>Ore 13:00</strong></p>
                     <p>Villa Schiuma<br>Contrada Rondinelle, Matera</p>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3032.784561023456!2d16.5516086765871!3d40.623624442398514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13477f7632cc3cdf%3A0x58b48f8341334fbb!2sVilla%20Schiuma!5e0!3m2!1sit!2sit!4v1711394600000!5m2!1sit!2sit"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2749.320493784511!2d16.587360375671494!3d40.695109771396204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13477f768e683fdb%3A0x50b48fd341334fbb!2sVilla%20Schiuma%20-%20Sala%20Ricevimenti%20Matera!5e1!3m2!1sit!2sit!4v1774946687850!5m2!1sit!2sit"></iframe>
                 </div>
-
             </div>
         </section>
 
-        <section id="lista" style="background-color: #fffaf5;">
+        <section id="viaggio">
+            <h2>Il Nostro Viaggio</h2>
+            <p style="margin-bottom: 40px; color: #78909c;">Esplora le tappe della nostra avventura tra Singapore, Malesia e Maldive</p>
+            
+            <div class="honey-wrapper">
+                <img src="https://imgur.com/k0YiPLd.jpg" class="honey-map">
+                
+                <div class="map-point pt-maldive"><div class="radar"></div></div>
+                <div class="info-panel">
+                    <h3 style="color:#4db6ac">Atollo di Ari, Maldive</h3>
+                    <p>Sabbia bianca e relax totale in un paradiso terrestre.</p>
+                </div>
+
+                <div class="map-point pt-kl"><div class="radar"></div></div>
+                <div class="info-panel">
+                    <h3 style="color:#4db6ac">Kuala Lumpur</h3>
+                    <p>Tra le Petronas Towers e i profumi dei mercati locali.</p>
+                </div>
+
+                <div class="map-point pt-malacca"><div class="radar"></div></div>
+                <div class="info-panel">
+                    <h3 style="color:#4db6ac">Malacca</h3>
+                    <p>Una città storica ricca di fascino coloniale e cultura.</p>
+                </div>
+
+                <div class="map-point pt-singapore1"><div class="radar"></div></div>
+                <div class="info-panel">
+                    <h3 style="color:#4db6ac">National Orchid Garden</h3>
+                    <p>I giardini botanici più iconici del Sud-est asiatico.</p>
+                </div>
+
+                <div class="map-point pt-singapore2"><div class="radar"></div></div>
+                <div class="info-panel">
+                    <h3 style="color:#4db6ac">Gardens by the Bay</h3>
+                    <p>L'incredibile spettacolo futuristico dei Supertrees.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="lista" style="background-color: #f0f7f7;">
             <h2>Lista Nozze</h2>
-            <div class="card-info" style="max-width: 700px;">
-                <p>Il vostro affetto è il regalo più prezioso. Se desiderate contribuire al nostro viaggio di nozze:</p>
-                <h3 style="margin: 5px 0;">Agenzia Viaggi "Alimathà Viaggi"</h3>
-                <p style="margin: 5px 0;">  Piazza Bologna 18, Potenza</p>
-                <p> </p>
-                <p><strong>Causale:</strong> Matrimonio Umberto & Laura - 12/09/2026</p>
-                <p style="background: #f9f9f9; padding: 15px; border-radius: 10px; margin-top: 15px; font-family: monospace; border: 1px solid #ddd;">
+            <div class="card-info" style="max-width: 700px; margin: 0 auto;">
+                <p>La vostra presenza è il regalo più prezioso.</p>
+                <p>Se desiderate contribuire al nostro viaggio di nozze:</p>
+                <h3 style="margin: 20px 0; color: #4db6ac;">Agenzia Viaggi "Alimathà Viaggi"</h3>
+                <p>Piazza Bologna 18, Potenza</p>
+                <p style="margin: 10px 0;"><strong>Causale:</strong> Matrimonio Umberto & Laura - 12/09/2026</p>
+                <p style="background: #f4fbfb; padding: 20px; border-radius: 12px; margin-top: 20px; font-family: monospace; border: 1px solid #e0f2f1; color: #546e7a;">
                     IBAN: IT 00 X 00000 00000 000000000000
                 </p>
             </div>
@@ -255,151 +296,91 @@
 
         <section id="rsvp">
             <h2>Conferma la tua presenza</h2>
-            <div class="card-info" style="max-width: 650px; margin: 0 auto; line-height: 1.6;">
-                <p>Siamo felici di condividere questo giorno con voi! Vi preghiamo di confermare la vostra partecipazione entro il <strong>15 Luglio 2026</strong>.</p>
-                
-                <p style="margin-top: 15px;">Attraverso il modulo potrete indicarci:</p>
-                <ul style="list-style: none; padding: 0; margin: 10px 0;">
-                    <li>✨ Nomi e numero dei partecipanti</li>
-                    <li>🍽️ Eventuali intolleranze o allergie</li>
-                    <li>🚌 Prenotazione del posto sulla navetta</li>
+            <div class="card-info" style="max-width: 650px;margin: 0 auto; line-height: 1.8;">
+                <p>Vi preghiamo di confermare entro il <strong>15 Agosto 2026</strong>.</p>
+                <ul style="list-style: none; padding: 0; margin: 20px 0; color: #607d8b; text-align: center; display: inline-block;">
+                    <li>👤 Nomi e numero partecipanti</li>
+                    <li>🍽️ Intolleranze o allergie</li>
+                    <li>🚌 Posto sulla navetta</li>
                 </ul>
-
-                <p style="font-style: italic; font-size: 0.9rem; margin-top: 15px; color: #8d6e63; border-top: 1px solid #eee; padding-top: 10px;">
-                    Le risposte sono modificabili tramite il link ricevuto via email fino alla data di scadenza.
-                </p>
-                
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSec7a2I11KEOR8PrhPiIlcKhMvWKGtRciARoVSjwmwZUGYiyw/viewform?usp=dialog" class="btn-gold" target="_blank">Compila il Modulo di Conferma</a>
+                <a href="#" class="btn-gold" target="_blank">Compila il Modulo</a>
             </div>
         </section>
 
-        <section id="foto" style="border-bottom: none;">
+        <section id="foto">
             <h2>Carica le tue Foto</h2>
             <div class="card-info" style="max-width: 600px;">
-                <p>Aiutaci a immortalare ogni istante caricando qui le foto del nostro giorno!</p>
-                <a href="IL_TUO_LINK_ALBUM" class="btn-gold" target="_blank">Apri Galleria</a>
+                <p>Aiutaci a ricordare ogni momento!</p>
+                <a href="#" class="btn-gold" target="_blank">Apri Galleria Foto</a>
             </div>
         </section>
 
-<section id="contatti" style="border-bottom: none; background-color: #fffaf5;">
-    <h2>Contatti</h2>
-    <p style="margin-bottom: 30px; text-align: center; max-width: 600px;">Per qualsiasi dubbio o necessità, non esitate a contattarci. Saremo felici di aiutarvi!</p>
-    <div style="display: flex; gap: 30px; justify-content: center; width: 100%; max-width: 800px; flex-wrap: wrap;">
-        
-        <div style="flex: 1; min-width: 250px; padding: 25px; background: white; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); text-align: center;">
-    <h3 style="font-size: 1.6rem; color: #8d6e63; margin-bottom: 15px;">Umberto</h3>
-    <a href="tel:+393481888685" style="color: #5d4037; text-decoration: none; font-weight: 600; display: block; margin-bottom: 15px; font-size: 1.1rem;">📞 Chiamami</a>
-    <a href="https://wa.me/393481888685?text=Ciao%20Umberto!%20Ti%20scrivo%20per%20il%20matrimonio..." 
-       target="_blank" 
-       style="display: inline-block; background-color: #25D366; color: white; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 0.9rem; margin-bottom: 15px;">
-       💬 WhatsApp
-    </a>
-    <a href="mailto:umbertolarocca52@gmail.com" style="color: #8d6e63; text-decoration: none; font-size: 0.9rem; display: block;">✉️ Email</a>
-</div>
+        <section id="contatti" style="background-color: #f0f7f7; border-bottom: none;">
+            <h2>Contatti</h2>
+            <div style="display: flex; gap: 30px; justify-content: center; width: 100%; max-width: 850px; flex-wrap: wrap;">
+                <div class="card-info" style="flex: 1; min-width: 280px;">
+                    <h3 style="color: #4db6ac;">Umberto</h3>
+                    <a href="tel:+393481888685" style="color: #546e7a; text-decoration: none; font-weight: 600; display: block; margin-bottom: 10px;">📞 +39 348 188 8685</a>
+                    <a href="mailto:umbertolarocca52@gmail.com" style="color: #78909c; text-decoration: none; font-size: 0.9rem; display: block;">✉️ umbertolarocca52@gmail.com</a>
+                    <a href="https://wa.me/393481888685" target="_blank" style="display: inline-block; background-color: #25D366; color: white; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 0.9rem; margin-bottom: 15px;">💬 WhatsApp</a>
+                </div>
+                <div class="card-info" style="flex: 1; min-width: 280px;">
+                    <h3 style="color: #4db6ac;">Laura</h3>
+                    <a href="tel:+393385732116" style="color: #546e7a; text-decoration: none; font-weight: 600; display: block; margin-bottom: 10px;">📞 +39 338 573 2116</a>
+                    <a href="mailto:laura.cammarota95@gmail.com" style="color: #78909c; text-decoration: none; font-size: 0.9rem; display: block;">✉️ laura.cammarota95@gmail.com</a>
+                                                 <a href="https://wa.me/393385732116" target="_blank" style="display: inline-block; background-color: #25D366; color: white; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 0.9rem; margin-bottom: 15px;">💬 WhatsApp</a>
 
-<div style="flex: 1; min-width: 250px; padding: 25px; background: white; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); text-align: center;">
-    <h3 style="font-size: 1.6rem; color: #8d6e63; margin-bottom: 15px;">Laura</h3>
-    <a href="tel:+393385732116" style="color: #5d4037; text-decoration: none; font-weight: 600; display: block; margin-bottom: 15px; font-size: 1.1rem;">📞 Chiamami</a>
-    <a href="https://wa.me/393385732116?text=Ciao%20Laura!%20Ti%20scrivo%20per%20il%20matrimonio..." 
-       target="_blank" 
-       style="display: inline-block; background-color: #25D366; color: white; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 0.9rem; margin-bottom: 15px;">
-       💬 WhatsApp
-    </a>
-    <a href="mailto:laura.cammarota95@gmail.com" style="color: #8d6e63; text-decoration: none; font-size: 0.9rem; display: block;">✉️ Email</a>
-</div>
-        
-    </div>
-</section>
-
+                </div>
+            </div>
+        </section>
     </div>
 
     <script>
-        function toggleMenu() {
-            document.getElementById('sidebar').classList.toggle('active');
-        }
-
-        // Countdown settato al 12 Settembre 2026 ore 10:30
         const weddingDate = new Date("September 12, 2026 10:30:00").getTime();
         setInterval(function() {
             const now = new Date().getTime();
             const diff = weddingDate - now;
-            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById("countdown").innerHTML = d + "g : " + h + "o : " + m + "m al SI!";
+            if (diff > 0) {
+                document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+                document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+                document.getElementById("mins").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+            }
         }, 1000);
 
-        // --- SISTEMA PETALI CON ROTAZIONE 360° MIGLIORATA ---
-        const petalImages = [
-            'https://imgur.com/ZqdDrsP.png', 
-            'https://imgur.com/ZqdDrsP.png', 
-            'https://imgur.com/ZqdDrsP.png'
-        ];
-
+        const petalImg = 'https://i.imgur.com/ZqdDrsP.png';
         function createPetal() {
             const petal = document.createElement('div');
             const home = document.getElementById('home');
             petal.classList.add('petal');
-            
-            // Randomizza l'immagine del petalo
-            petal.style.backgroundImage = `url(${petalImages[Math.floor(Math.random() * petalImages.length)]})`;
-            
-            // Dimensioni variabili
+            petal.style.backgroundImage = `url(${petalImg})`;
             const size = Math.random() * 12 + 10 + 'px';
-            petal.style.width = size;
-            petal.style.height = size;
-            
-            // Posizione iniziale e parametri di movimento
-            let posX = Math.random() * 100; // In percentuale della larghezza
-            let posY = -50; // Parte sopra l'area visibile
-            let speedY = Math.random() * 0.7 + 0.5; // Velocità caduta
-            let oscillationRange = Math.random() * 3 + 2; // Ampiezza oscillazione laterale
-            let oscillationSpeed = Math.random() * 0.02 + 0.01;
-            
-            // Parametri Rotazione 360°
-            let rotationX = Math.random() * 360;
-            let rotationY = Math.random() * 360;
-            let rotationZ = Math.random() * 360;
+            petal.style.width = size; petal.style.height = size;
+            let posX = Math.random() * 100;
+            let posY = -50;
+            let speedY = Math.random() * 0.7 + 0.5;
+            let angle = 0;
+            let angleSpeed = Math.random() * 0.02 + 0.01;
+            let waveRange = Math.random() * 3 + 2; 
+            let rotX = Math.random() * 360;
+            let rotY = Math.random() * 360;
+            let rotZ = Math.random() * 360;
             let rotSpeedX = (Math.random() - 0.5) * 2;
             let rotSpeedY = (Math.random() - 0.5) * 2;
-            let rotSpeedZ = (Math.random() - 0.5) * 2;
-
-            let time = 0;
             home.appendChild(petal);
-
             function animate() {
-                time += oscillationSpeed;
-                posY += speedY;
-                
-                // Aggiorna rotazioni per effetto 360 completo
-                rotationX += rotSpeedX;
-                rotationY += rotSpeedY;
-                rotationZ += rotSpeedZ;
-                
-                // Applica trasformazioni
-                const currentX = posX + Math.sin(time) * oscillationRange;
+                posY += speedY; angle += angleSpeed; rotX += rotSpeedX; rotY += rotSpeedY; rotZ += 1;
+                let currentX = posX + Math.sin(angle) * waveRange;
                 petal.style.top = posY + 'px';
                 petal.style.left = currentX + 'vw';
-                petal.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg) rotateZ(${rotationZ}deg)`;
-                
-                // Rimuovi se esce dalla sezione Home
-                if (posY > home.offsetHeight) {
-                    petal.remove();
-                } else {
-                    requestAnimationFrame(animate);
-                }
+                petal.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg)`;
+                if (posY > home.offsetHeight) petal.remove(); else requestAnimationFrame(animate);
             }
             requestAnimationFrame(animate);
         }
+        setInterval(createPetal, 450);
 
-        // Genera petali a intervalli regolari
-        setInterval(createPetal, 400);
-
-        // Chiude il menu mobile al click
         document.querySelectorAll('.sidebar a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('sidebar').classList.remove('active');
-            });
+            link.addEventListener('click', () => { if(window.innerWidth <= 768) document.getElementById('sidebar').classList.remove('active'); });
         });
     </script>
 </body>
