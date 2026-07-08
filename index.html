@@ -172,16 +172,7 @@ section:not(#home) {
 @keyframes pulse-badge {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.04); }
-}
-
-    .section-monogram {
-    display: block;
-    width: 54px;
-    height: auto;
-    margin: 0 auto;
-    opacity: 0.85;
-}    
-        
+}   
 #viaggio { width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 100px 40px 100px 300px; overflow: hidden; }
 
 /* --- PROGRESS BAR VIAGGIO --- */
@@ -629,9 +620,6 @@ section#viaggio { padding: 80px 20px; }
                 </div>
             </div>
         </section>
-
-         <img src="https://i.imgur.com/MLX6vNP.png" alt="" class="section-monogram" aria-hidden="true">
-
        <section id="viaggio">
     <div class="gift-badge">🎁 Qui puoi regalarci un pezzo di viaggio</div>
     <h2>Il Nostro Viaggio di Nozze</h2>
@@ -662,7 +650,7 @@ section#viaggio { padding: 80px 20px; }
             <div class="map-point pt-singapore2" onclick="openTravelModal('sg2')"><div class="radar"></div></div>
         </div>
     </div>
-METTI QUI
+
 <div class="carousel-wrapper">
     <div class="carousel-3d" id="carousel3d">
         <div class="carousel-3d-card" data-tappa="Atollo di Ari, Maldive">
@@ -686,9 +674,6 @@ METTI QUI
             <div class="card-content"> <h3>Mandai Wildlife Reserve</h3> <button class="btn-gold" onclick="openTravelModal('sg2')">Scopri la tappa</button> </div>
         </div>
     </div>
-    <div class="dots-container" id="mainDots"></div>
-</div>
-
     <div class="dots-container" id="mainDots"></div>
 </div>
 
@@ -932,20 +917,13 @@ const data = travelData[tappa];
 if (!data) return;
 document.getElementById('modalTitle').innerText = data.title;
 document.getElementById('modalDesc').innerText = data.desc;
-    
 
-const gallery = document.getElementById('modalGallery')
-gallery.innerHTML = data.imgs.map(img => `<img src="${img}" loading="lazy">`).join('');
+const gallery = document.getElementById('modalGallery');
+gallery.innerHTML = data.imgs.map(img => `<img src="${img}" loading="lazy">`).join('') + `<img src="${data.imgs[0]}" loading="lazy" aria-hidden="true">`;
 
 createDots('modalDots', data.imgs.length, 'modalGallery');
 
 document.querySelector('.modal-content').scrollTop = 0;
-
-const modalGallery = document.getElementById('modalGallery');
-modalGallery.onscroll = () => {
-    const index = Math.round(modalGallery.scrollLeft / modalGallery.offsetWidth);
-    updateDots('modalDots', index); }    
-
 
 document.getElementById('travelModal').style.display = 'flex';
 document.body.classList.add('modal-open');
@@ -964,8 +942,6 @@ gallery.onscroll = () => {
         }
     }, 200);
 };
-// Reset dello scroll interno ogni volta che si apre
-document.querySelector('.modal-content').scrollTop = 0;
 history.pushState({ modal: 'travel' }, '');
 }
 
